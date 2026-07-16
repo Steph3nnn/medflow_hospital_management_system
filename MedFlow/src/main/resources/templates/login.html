@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<h2>Med-Flow Login</h2>
+
+<form th:action="@{/login}" method="post">
+    <input type="email" placeholder="Enter Your Email" name="username">
+    <input type="password" placeholder="Password" name="password">
+    <button type="submit">Login</button>
+</form>
+
+</body>
+</html>
