@@ -24,8 +24,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
+                .csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/login", "/css/**", "/js/**", "/images/**").permitAll()
+
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/doctor/**").hasRole("DOCTOR")
+                        .requestMatchers("/reception/**").hasRole("RECEPTIONIST")
+                        .requestMatchers("/lab/**").hasRole("LAB_SCIENTIST")
+                        .requestMatchers("/pharmacy/**").hasRole("PHARMACIST")
+
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
