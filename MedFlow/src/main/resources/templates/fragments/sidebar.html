@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
+
+<div th:fragment="sidebar"
+     class="bg-dark text-white vh-100 p-3"
+     style="width:250px;">
+
+    <h3 class="text-center mb-4">
+        <i class="bi bi-hospital"></i> MedFlow
+    </h3>
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item mb-2">
+            <a th:href="@{/admin/dashboard}" class="nav-link text-white">
+                <i class="bi bi-speedometer2"></i> Dashboard
+            </a>
+        </li>
+
+        <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white">
+                <i class="bi bi-people-fill"></i> User Management
+            </a>
+        </li>
+
+        <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white">
+                <i class="bi bi-person-vcard"></i> Patients
+            </a>
+        </li>
+
+        <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white">
+                <i class="bi bi-calendar-event"></i> Appointments
+            </a>
+        </li>
+
+        <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white">
+                <i class="bi bi-capsule"></i> Pharmacy
+            </a>
+        </li>
+
+        <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white">
+                <i class="bi bi-eyedropper"></i> Laboratory
+            </a>
+        </li>
+
+        <li class="nav-item mt-5">
+            <a th:href="@{/logout}" class="nav-link text-danger">
+                <i class="bi bi-box-arrow-right"></i> Logout
+            </a>
+        </li>
+
+    </ul>
+
+</div>
 
 </body>
 </html>
