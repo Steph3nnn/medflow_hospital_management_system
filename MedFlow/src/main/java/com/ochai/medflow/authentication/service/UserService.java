@@ -23,6 +23,23 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    public void updateUser(Long id, User updatedUser) {
+
+        User user = getUserById(id);
+
+        user.setFirstName(updatedUser.getFirstName());
+        user.setLastName(updatedUser.getLastName());
+        user.setEmail(updatedUser.getEmail());
+        user.setRole(updatedUser.getRole());
+
+        userRepository.save(user);
+    }
+
     public void createUser(CreateUserRequest request) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
