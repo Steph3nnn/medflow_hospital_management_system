@@ -75,17 +75,29 @@ public class AdminUserController {
     }
 
     @PostMapping("/disable/{id}")
-    public String disableUser(@PathVariable Long id) {
+    public String disableUser(@PathVariable Long id,
+                              RedirectAttributes redirectAttributes) {
 
         userService.disableUser(id);
+
+        redirectAttributes.addFlashAttribute(
+                "success",
+                "User disabled successfully!"
+        );
 
         return "redirect:/admin/users";
     }
 
     @PostMapping("/enable/{id}")
-    public String enableUser(@PathVariable Long id) {
+    public String enableUser(@PathVariable Long id,
+                             RedirectAttributes redirectAttributes) {
 
         userService.enableUser(id);
+
+        redirectAttributes.addFlashAttribute(
+                "success",
+                "User enabled successfully!"
+        );
 
         return "redirect:/admin/users";
     }
