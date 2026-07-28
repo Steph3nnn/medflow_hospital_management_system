@@ -74,4 +74,20 @@ public class AdminUserController {
         return "redirect:/admin/users";
     }
 
+    @PostMapping("/disable/{id}")
+    public String disableUser(@PathVariable Long id) {
+
+        userService.disableUser(id);
+
+        return "redirect:/admin/users";
+    }
+
+    @PostMapping("/enable/{id}")
+    public String enableUser(@PathVariable Long id) {
+
+        userService.enableUser(id);
+
+        return "redirect:/admin/users";
+    }
+
 }

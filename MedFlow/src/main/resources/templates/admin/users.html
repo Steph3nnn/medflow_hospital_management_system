@@ -79,15 +79,33 @@
                         </td>
 
                         <td>
-                            
-                                <a th:href="@{/admin/users/edit/{id}(id=${user.id})}"
-                                   class="btn btn-warning btn-sm">
-                                    <i class="bi bi-pencil-square"></i> Edit
-                                </a>
 
-                            <button class="btn btn-danger btn-sm">
-                                Disable
-                            </button>
+                            <a th:href="@{/admin/users/edit/{id}(id=${user.id})}"
+                               class="btn btn-warning btn-sm">
+                                Edit
+                            </a>
+
+                            <form th:if="${user.enabled}"
+                                  th:action="@{/admin/users/disable/{id}(id=${user.id})}"
+                                  method="post"
+                                  style="display:inline">
+
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    Disable
+                                </button>
+
+                            </form>
+
+                            <form th:unless="${user.enabled}"
+                                  th:action="@{/admin/users/enable/{id}(id=${user.id})}"
+                                  method="post"
+                                  style="display:inline">
+
+                                <button type="submit" class="btn btn-success btn-sm">
+                                    Enable
+                                </button>
+
+                            </form>
 
                         </td>
 

@@ -39,6 +39,25 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public void disableUser(Long id) {
+
+        User user = getUserById(id);
+
+        user.setEnabled(false);
+
+        userRepository.save(user);
+    }
+
+    public void enableUser(Long id) {
+
+        User user = getUserById(id);
+
+        user.setEnabled(true);
+
+        userRepository.save(user);
+    }
+    
+
     public void createUser(CreateUserRequest request) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
