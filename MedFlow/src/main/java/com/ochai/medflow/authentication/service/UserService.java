@@ -56,7 +56,7 @@ public class UserService {
 
         userRepository.save(user);
     }
-    
+
 
     public void createUser(CreateUserRequest request) {
 
@@ -77,6 +77,20 @@ public class UserService {
                 .build();
 
         userRepository.save(user);
+    }
+
+    public List<User> searchUsers(String search) {
+
+        if (search == null || search.trim().isEmpty()) {
+            return userRepository.findAll();
+        }
+
+        return userRepository
+                .findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCaseOrEmailContainingIgnoreCase(
+                        search,
+                        search,
+                        search
+                );
     }
 
 

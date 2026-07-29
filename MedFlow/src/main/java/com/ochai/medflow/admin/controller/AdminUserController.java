@@ -21,9 +21,11 @@ public class AdminUserController {
     private final UserService userService;
 
     @GetMapping
-    public String users(Model model) {
+    public String users(@RequestParam(required = false) String search,
+                        Model model) {
 
-        model.addAttribute("users", userService.findAll());
+        model.addAttribute("users", userService.searchUsers(search));
+        model.addAttribute("search", search);
 
         return "admin/users";
     }
