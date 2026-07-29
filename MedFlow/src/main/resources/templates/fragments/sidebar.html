@@ -14,56 +14,69 @@
 
         <hr>
 
-        <ul class="nav nav-pills flex-column gap-2">
+        <ul class="nav flex-column">
 
-            <li class="nav-item">
-                <a th:href="@{/admin/dashboard}"
-                   class="nav-link text-white">
-                    <i class="bi bi-speedometer2"></i>
-                    Dashboard
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a th:href="@{/admin/users}"
-                   class="nav-link text-white">
-                    <i class="bi bi-people-fill"></i>
-                    User Management
+            <li class="nav-item mb-2">
+                <a th:href="@{/admin/dashboard}" class="nav-link text-white">
+                    <i class="bi bi-speedometer2"></i> Dashboard
                 </a>
             </li>
 
             <li class="nav-item mb-2">
-                <a href="#" class="nav-link text-white">
+                <a th:href="@{/admin/users}" class="nav-link text-white">
+                    <i class="bi bi-people"></i> User Management
+                </a>
+            </li>
+
+            <li class="nav-item mb-2">
+                <a th:href="@{/admin/patients}" class="nav-link text-white">
                     <i class="bi bi-person-vcard"></i> Patients
                 </a>
             </li>
 
             <li class="nav-item mb-2">
-                <a href="#" class="nav-link text-white">
-                    <i class="bi bi-calendar-event"></i> Appointments
+                <a href="#" class="nav-link text-white disabled">
+                    <i class="bi bi-heart-pulse"></i> Doctors
                 </a>
             </li>
 
             <li class="nav-item mb-2">
-                <a href="#" class="nav-link text-white">
+                <a href="#" class="nav-link text-white disabled">
+                    <i class="bi bi-calendar-check"></i> Appointments
+                </a>
+            </li>
+
+            <li class="nav-item mb-2">
+                <a href="#" class="nav-link text-white disabled">
+                    <i class="bi bi-eyedropper"></i> Laboratory
+                </a>
+            </li>
+
+            <li class="nav-item mb-2">
+                <a href="#" class="nav-link text-white disabled">
                     <i class="bi bi-capsule"></i> Pharmacy
                 </a>
             </li>
 
             <li class="nav-item mb-2">
-                <a href="#" class="nav-link text-white">
-                    <i class="bi bi-eyedropper"></i> Laboratory
+                <a href="#" class="nav-link text-white disabled">
+                    <i class="bi bi-receipt"></i> Billing
                 </a>
             </li>
 
-            <li class="nav-item mt-5">
-                <a th:href="@{/logout}" class="nav-link text-danger">
-                    <i class="bi bi-box-arrow-right"></i> Logout
+            <li class="nav-item mb-2">
+                <a href="#" class="nav-link text-white disabled">
+                    <i class="bi bi-bar-chart"></i> Reports
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link text-white disabled">
+                    <i class="bi bi-gear"></i> Settings
                 </a>
             </li>
 
         </ul>
-
     </div>
 
 </div>
