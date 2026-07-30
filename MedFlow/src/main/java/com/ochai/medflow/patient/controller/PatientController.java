@@ -21,9 +21,11 @@ public class PatientController {
     private final PatientService patientService;
 
     @GetMapping
-    public String patients(Model model) {
+    public String patients(@RequestParam(required = false) String search,
+                           Model model) {
 
-        model.addAttribute("patients", patientService.findAll());
+        model.addAttribute("patients", patientService.searchPatients(search));
+        model.addAttribute("search", search);
 
         return "admin/patients";
     }

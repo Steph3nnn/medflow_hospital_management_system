@@ -77,6 +77,19 @@ public class PatientService {
         patientRepository.save(patient);
     }
 
-    
+    public List<Patient> searchPatients(String search) {
+
+        if (search == null || search.trim().isEmpty()) {
+            return patientRepository.findAll();
+        }
+
+        return patientRepository
+                .findByPatientIdContainingIgnoreCaseOrFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCaseOrPhoneNumberContainingIgnoreCase(
+                        search,
+                        search,
+                        search,
+                        search
+                );
+    }
 
 }
