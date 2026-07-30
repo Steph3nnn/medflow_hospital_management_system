@@ -92,4 +92,22 @@ public class PatientService {
                 );
     }
 
+    public void activatePatient(Long id) {
+
+        Patient patient = getPatientById(id);
+
+        patient.setActive(true);
+
+        patientRepository.save(patient);
+    }
+
+    public void deactivatePatient(Long id) {
+
+        Patient patient = getPatientById(id);
+
+        patient.setActive(false);
+
+        patientRepository.save(patient);
+    }
+
 }

@@ -30,6 +30,20 @@ public class PatientController {
         return "admin/patients";
     }
 
+    @GetMapping("/{id}")
+    public String viewPatient(@PathVariable Long id,
+                              Model model) {
+
+        model.addAttribute(
+                "patient",
+                patientService.getPatientById(id)
+        );
+
+        return "admin/view-patient";
+    }
+
+
+
     @GetMapping("/create")
     public String createPatientForm(Model model) {
 
@@ -74,6 +88,34 @@ public class PatientController {
         redirectAttributes.addFlashAttribute(
                 "success",
                 "Patient updated successfully!"
+        );
+
+        return "redirect:/admin/patients";
+    }
+
+    @PostMapping("/activate/{id}")
+    public String activatePatient(@PathVariable Long id,
+                                  RedirectAttributes redirectAttributes) {
+
+        patientService.activatePatient(id);
+
+        redirectAttributes.addFlashAttribute(
+                "success",
+                "Patient activated successfully!"
+        );
+
+        return "redirect:/admin/patients";
+    }
+
+    @PostMapping("/deactivate/{id}")
+    public String deactivatePatient(@PathVariable Long id,
+                                    RedirectAttributes redirectAttributes) {
+
+        patientService.deactivatePatient(id);
+
+        redirectAttributes.addFlashAttribute(
+                "success",
+                "Patient deactivated successfully!"
         );
 
         return "redirect:/admin/patients";

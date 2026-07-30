@@ -134,6 +134,15 @@
 
                                     <td>
 
+                                        <a th:href="@{/admin/patients/{id}(id=${patient.id})}"
+                                           class="btn btn-info btn-sm">
+
+                                            <i class="bi bi-eye"></i>
+
+                                            View
+
+                                        </a>
+
                                         <a th:href="@{/admin/patients/edit/{id}(id=${patient.id})}"
                                            class="btn btn-warning btn-sm">
 
@@ -142,6 +151,36 @@
                                             Edit
 
                                         </a>
+
+                                        <form th:if="${patient.active}"
+                                              th:action="@{/admin/patients/deactivate/{id}(id=${patient.id})}"
+                                              method="post"
+                                              class="d-inline">
+
+                                            <button class="btn btn-danger btn-sm">
+
+                                                <i class="bi bi-person-x"></i>
+
+                                                Deactivate
+
+                                            </button>
+
+                                        </form>
+
+                                        <form th:unless="${patient.active}"
+                                              th:action="@{/admin/patients/activate/{id}(id=${patient.id})}"
+                                              method="post"
+                                              class="d-inline">
+
+                                            <button class="btn btn-success btn-sm">
+
+                                                <i class="bi bi-person-check"></i>
+
+                                                Activate
+
+                                            </button>
+
+                                        </form>
 
                                     </td>
 
