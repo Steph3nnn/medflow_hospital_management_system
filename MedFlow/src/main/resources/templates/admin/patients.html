@@ -73,6 +73,7 @@
                                     <th>Phone</th>
                                     <th>Blood Group</th>
                                     <th>Status</th>
+                                    <th>Actions</th>
 
                                 </tr>
 
@@ -103,6 +104,19 @@
                                               th:unless="${patient.active}">
                                             Inactive
                                         </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        <a th:href="@{/admin/patients/edit/{id}(id=${patient.id})}"
+                                           class="btn btn-warning btn-sm">
+
+                                            <i class="bi bi-pencil-square"></i>
+
+                                            Edit
+
+                                        </a>
 
                                     </td>
 

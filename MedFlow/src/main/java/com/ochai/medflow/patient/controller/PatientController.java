@@ -39,6 +39,44 @@ public class PatientController {
         return "admin/create-patient";
     }
 
+    @GetMapping("/edit/{id}")
+    public String editPatientForm(@PathVariable Long id, Model model) {
+
+        model.addAttribute("patient", patientService.getPatientById(id));
+        model.addAttribute("genders", Gender.values());
+        model.addAttribute("bloodGroups", BloodGroup.values());
+        model.addAttribute("genotypes", Genotype.values());
+
+        return "admin/edit-patient";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String updatePatient(
+            @PathVariable Long id,
+            @Valid @ModelAttribute("patient") CreatePatientRequest request,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes,
+            Model model) {
+
+        if (bindingResult.hasErrors()) {
+
+            model.addAttribute("genders", Gender.values());
+            model.addAttribute("bloodGroups", BloodGroup.values());
+            model.addAttribute("genotypes", Genotype.values());
+
+            return "redirect:/admin/patients";
+        }
+
+        patientService.updatePatient(id, request);
+
+        redirectAttributes.addFlashAttribute(
+                "success",
+                "Patient updated successfully!"
+        );
+
+        return "redirect:/admin/patients";
+    }
+
     @PostMapping("/create")
     public String createPatient(
             @Valid @ModelAttribute("patient") CreatePatientRequest request,

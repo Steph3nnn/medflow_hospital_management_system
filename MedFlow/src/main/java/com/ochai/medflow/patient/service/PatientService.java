@@ -46,9 +46,37 @@ public class PatientService {
                 count
         );
     }
-    
+
     public List<Patient> findAll() {
         return patientRepository.findAll();
     }
+
+    public Patient getPatientById(Long id) {
+
+        return patientRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Patient not found"));
+    }
+
+    public void updatePatient(Long id, CreatePatientRequest request) {
+
+        Patient patient = getPatientById(id);
+
+        patient.setFirstName(request.getFirstName());
+        patient.setLastName(request.getLastName());
+        patient.setGender(request.getGender());
+        patient.setDateOfBirth(request.getDateOfBirth());
+        patient.setPhoneNumber(request.getPhoneNumber());
+        patient.setEmail(request.getEmail());
+        patient.setAddress(request.getAddress());
+        patient.setBloodGroup(request.getBloodGroup());
+        patient.setGenotype(request.getGenotype());
+        patient.setAllergies(request.getAllergies());
+        patient.setEmergencyContactName(request.getEmergencyContactName());
+        patient.setEmergencyContactPhone(request.getEmergencyContactPhone());
+
+        patientRepository.save(patient);
+    }
+
+    
 
 }
