@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Patient Profile</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+          rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container-fluid">
+
+    <div class="row min-vh-100">
+
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+        <div class="col-md-10 p-0">
+
+            <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+            <main class="p-4">
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+
+                    <h2>Doctor Profile</h2>
+
+                    <a th:href="@{/admin/doctors}"
+                       class="btn btn-secondary">
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Back
+
+                    </a>
+
+                </div>
+
+                <div class="card shadow-sm">
+
+                    <div class="card-body">
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+
+                                <h5>Personal Information</h5>
+
+                                <hr>
+
+                                <p><strong>Doctor ID:</strong>
+                                    <span th:text="${doctor.doctorId}"></span>
+                                </p>
+
+                                <p><strong>Name:</strong>
+                                    <span th:text="${doctor.firstName + ' ' + doctor.lastName}"></span>
+                                </p>
+
+                                <p><strong>Gender:</strong>
+                                    <span th:text="${doctor.gender}"></span>
+                                </p>
+
+
+                                <p><strong>Phone:</strong>
+                                    <span th:text="${doctor.phoneNumber}"></span>
+                                </p>
+
+                                <p><strong>Email:</strong>
+                                    <span th:text="${doctor.email}"></span>
+                                </p>
+
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <h5>Professional Information</h5>
+
+                                <hr>
+
+                                <p><strong>Department:</strong>
+                                    <span th:text="${doctor.department}"></span>
+                                </p>
+
+                                <p><strong>Speciality:</strong>
+                                    <span th:text="${doctor.specialty}"></span>
+                                </p>
+
+                                <p><strong>License Number:</strong>
+                                    <span th:text="${doctor.licenseNumber}"></span>
+                                </p>
+
+                                <hr>
+
+                                <h5>Other Info</h5>
+
+                                <p><strong>Years Of Experience:</strong>
+                                    <span th:text="${doctor.yearsOfExperience}"></span>
+                                </p>
+
+                                <p><strong>Consultation Fee:</strong>
+                                    <span th:text="${doctor.consultationFee}"></span>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

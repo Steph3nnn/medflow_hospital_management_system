@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Edit Doctor</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+          rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container-fluid">
+
+    <div class="row min-vh-100">
+
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+        <div class="col-md-10 p-0">
+
+            <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+            <main class="p-4">
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+
+                    <h2>Edit Doctor</h2>
+
+                    <a th:href="@{/admin/doctors}"
+                       class="btn btn-secondary">
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Back
+
+                    </a>
+
+                </div>
+
+                <form th:action="@{/admin/doctors/edit/{id}(id=${doctor.id})}"
+                      th:object="${doctor}"
+                      method="post">
+
+                    <div class="card shadow-sm mb-4">
+
+                        <div class="card-header">
+
+                            <h5 class="mb-0">
+                                Personal Information
+                            </h5>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">First Name</label>
+
+                                    <input type="text"
+                                           class="form-control"
+                                           th:field="*{firstName}">
+
+                                    <div class="text-danger"
+                                         th:errors="*{firstName}">
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">Last Name</label>
+
+                                    <input type="text"
+                                           class="form-control"
+                                           th:field="*{lastName}">
+
+                                    <div class="text-danger"
+                                         th:errors="*{lastName}">
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">Gender</label>
+
+                                    <select class="form-select"
+                                            th:field="*{gender}">
+
+                                        <option value="">Select Gender</option>
+
+                                        <option th:each="gender : ${genders}"
+                                                th:value="${gender}"
+                                                th:text="${gender}">
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">Email</label>
+
+                                    <input type="email"
+                                           class="form-control"
+                                           th:field="*{email}">
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">Phone Number</label>
+
+                                    <input type="text"
+                                           class="form-control"
+                                           th:field="*{phoneNumber}">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="card shadow-sm mb-4">
+
+                        <div class="card-header">
+
+                            <h5 class="mb-0">
+                                Professional Information
+                            </h5>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Department
+                                    </label>
+
+                                    <select class="form-select"
+                                            th:field="*{department}">
+
+                                        <option value="">
+                                            Select Department
+                                        </option>
+
+                                        <option th:each="department : ${departments}"
+                                                th:value="${department}"
+                                                th:text="${department}">
+                                        </option>
+
+                                    </select>
+
+                                    <div class="text-danger"
+                                         th:errors="*{department}">
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Specialty
+                                    </label>
+
+                                    <select class="form-select"
+                                            th:field="*{specialty}">
+
+                                        <option value="">
+                                            Select Specialty
+                                        </option>
+
+                                        <option th:each="specialty : ${specialties}"
+                                                th:value="${specialty}"
+                                                th:text="${specialty}">
+                                        </option>
+
+                                    </select>
+
+                                    <div class="text-danger"
+                                         th:errors="*{specialty}">
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        License Number
+                                    </label>
+
+                                    <input type="text"
+                                           class="form-control"
+                                           th:field="*{licenseNumber}">
+
+                                    <div class="text-danger"
+                                         th:errors="*{licenseNumber}">
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Years of Experience
+                                    </label>
+
+                                    <input type="number"
+                                           min="0"
+                                           class="form-control"
+                                           th:field="*{yearsOfExperience}">
+
+                                    <div class="text-danger"
+                                         th:errors="*{yearsOfExperience}">
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Consultation Fee (₦)
+                                    </label>
+
+                                    <input type="number"
+                                           step="0.01"
+                                           min="0"
+                                           class="form-control"
+                                           th:field="*{consultationFee}">
+
+                                    <div class="text-danger"
+                                         th:errors="*{consultationFee}">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- ACTION BUTTONS -->
+
+                    <div class="d-flex justify-content-end gap-2">
+
+                        <a th:href="@{/admin/doctors}"
+                           class="btn btn-secondary">
+
+                            <i class="bi bi-x-circle"></i>
+
+                            Cancel
+
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-primary">
+
+                            <i class="bi bi-pencil-square"></i>
+
+                            Update Doctor
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </main>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

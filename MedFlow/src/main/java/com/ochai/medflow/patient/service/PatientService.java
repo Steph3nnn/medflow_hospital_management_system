@@ -41,7 +41,7 @@ public class PatientService {
         long count = patientRepository.count() + 1;
 
         return String.format(
-                "PT-%d-%06d",
+                "PT-%d-%02d",
                 Year.now().getValue(),
                 count
         );
