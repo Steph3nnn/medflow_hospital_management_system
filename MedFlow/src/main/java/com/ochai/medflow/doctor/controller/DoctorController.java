@@ -23,7 +23,6 @@ public class DoctorController {
     @GetMapping
     public String doctors(@RequestParam(required = false) String search,
                           Model model) {
-
         model.addAttribute("doctors", doctorService.searchDoctors(search));
         model.addAttribute("search", search);
 
@@ -117,6 +116,8 @@ public class DoctorController {
 
         return "admin/view-doctor";
     }
+
+   
 
     @PostMapping("/activate/{id}")
     public String activateDoctor(@PathVariable Long id,
