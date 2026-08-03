@@ -1,10 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+
+    <title>View Appointment</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+          rel="stylesheet">
+
 </head>
-<body>
+
+<body class="bg-light">
+
+<div class="container-fluid">
+
+    <div class="row min-vh-100">
+
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+        <div class="col-md-10 p-0">
+
+            <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+            <main class="p-4">
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+
+                    <h2>Appointment Details</h2>
+
+                    <a th:href="@{/admin/appointments}"
+                       class="btn btn-secondary">
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Back
+
+                    </a>
+
+                </div>
+
+                <div class="card shadow-sm">
+
+                    <div class="card-header">
+
+                        <h5 class="mb-0">
+                            Appointment Information
+                        </h5>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <strong>Appointment ID</strong>
+
+                                <p th:text="${appointment.appointmentId}"></p>
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <strong>Status</strong>
+
+                                <p th:text="${appointment.status}"></p>
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <strong>Patient</strong>
+
+                                <p th:text="${appointment.patient.firstName + ' ' + appointment.patient.lastName}"></p>
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <strong>Doctor</strong>
+
+                                <p th:text="${'Dr. ' + appointment.doctor.firstName + ' ' + appointment.doctor.lastName}"></p>
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <strong>Date</strong>
+
+                                <p th:text="${appointment.appointmentDate}"></p>
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <strong>Time</strong>
+
+                                <p th:text="${appointment.appointmentTime}"></p>
+
+                            </div>
+
+                            <div class="col-12 mb-3">
+
+                                <strong>Reason</strong>
+
+                                <p th:text="${appointment.reason}"></p>
+
+                            </div>
+
+                            <div class="col-12 mb-4">
+
+                                <strong>Notes</strong>
+
+                                <p th:text="${appointment.notes}"></p>
+
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <h5 class="mb-3">
+
+                            Update Appointment Status
+
+                        </h5>
+
+                        <form th:action="@{/admin/appointments/status/{id}(id=${appointment.id})}"
+                              method="post">
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+
+                                    <select name="status"
+                                            class="form-select">
+
+                                        <option th:each="status : ${statuses}"
+                                                th:value="${status}"
+                                                th:text="${status}"
+                                                th:selected="${status == appointment.status}">
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <button class="btn btn-primary">
+
+                                        <i class="bi bi-check-circle"></i>
+
+                                        Update Status
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
