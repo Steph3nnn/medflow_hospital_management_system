@@ -2,9 +2,12 @@ package com.ochai.medflow.admin.controller;
 
 
 import com.ochai.medflow.admin.dto.CreateUserRequest;
+import com.ochai.medflow.appointment.service.AppointmentService;
 import com.ochai.medflow.authentication.entity.User;
 import com.ochai.medflow.authentication.service.UserService;
 import com.ochai.medflow.common.enums.RoleName;
+import com.ochai.medflow.doctor.service.DoctorService;
+import com.ochai.medflow.patient.service.PatientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequiredArgsConstructor
 public class AdminUserController {
 
+    private final PatientService patientService;
+    private final DoctorService doctorService;
+    private final AppointmentService appointmentService;
     private final UserService userService;
 
     @GetMapping

@@ -108,4 +108,8 @@ public class AppointmentService {
         );
     }
 
+    public long countAppointments() {
+        return appointmentRepository.count();
+    }
+
 }

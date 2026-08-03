@@ -106,6 +106,8 @@ public class DoctorService {
         );
     }
 
-
+    public long countDoctors() {
+        return doctorRepository.count();
+    }
 
 }

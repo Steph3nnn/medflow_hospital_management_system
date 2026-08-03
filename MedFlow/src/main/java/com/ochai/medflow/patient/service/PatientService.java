@@ -110,4 +110,8 @@ public class PatientService {
         patientRepository.save(patient);
     }
 
+    public long countPatients() {
+        return patientRepository.count();
+    }
+
 }
