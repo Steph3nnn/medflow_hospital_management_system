@@ -11,6 +11,7 @@ import com.ochai.medflow.patient.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.Year;
 import java.util.List;
 
@@ -110,6 +111,19 @@ public class AppointmentService {
 
     public long countAppointments() {
         return appointmentRepository.count();
+    }
+
+    public List<Appointment> getRecentAppointments() {
+
+        return appointmentRepository.findAll()
+                .stream()
+                .sorted((a, b) -> b.getId().compareTo(a.getId()))
+                .limit(5)
+                .toList();
+    }
+
+    public List<Appointment> getTodayAppointmentDate(){
+        return appointmentRepository.findByAppointmentDate(LocalDate.now());
     }
 
 }

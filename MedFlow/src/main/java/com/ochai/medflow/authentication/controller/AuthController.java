@@ -29,7 +29,7 @@ public class AuthController {
         model.addAttribute("doctorCount", doctorService.countDoctors());
         model.addAttribute("appointmentCount", appointmentService.countAppointments());
         model.addAttribute("userCount", userService.countUsers());
-
+        model.addAttribute("recentAppointments", appointmentService.getRecentAppointments());
         return "admin/dashboard";
     }
 }

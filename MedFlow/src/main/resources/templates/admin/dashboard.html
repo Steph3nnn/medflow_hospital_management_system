@@ -3,6 +3,8 @@
 
 <head>
     <title>Admin Dashboard</title>
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -95,6 +97,7 @@
 
         </div>
 
+
         <!-- Main Content -->
 
         <div class="col-md-10 p-4">
@@ -103,60 +106,422 @@
             <hr>
 
             <div class="row">
+                <main class="p-4 dashboard-bg">
 
-                <div class="col-md-4">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
 
-                    <div class="card shadow-sm">
+                        <div>
+                            <h2 class="fw-bold mb-1">Hello, Admin</h2>
+                            <p class="text-muted mb-0">
+                                Welcome back to MedFlow Hospital Management System
+                            </p>
+                        </div>
 
-                        <div class="card-body">
+                        <div class="d-flex gap-2">
 
-                            <h5>Total Users</h5>
+                            <a th:href="@{/admin/patients/create}"
+                               class="btn btn-primary">
+                                <i class="bi bi-person-plus me-1"></i>
+                                Add Patient
+                            </a>
 
-                            <h2 th:text="${patientCount + doctorCount}">0</h2>
+                            <a th:href="@{/admin/appointments/create}"
+                               class="btn btn-outline-primary">
+                                <i class="bi bi-calendar-plus me-1"></i>
+                                Appointment
+                            </a>
 
                         </div>
 
                     </div>
 
-                </div>
+                    <div class="row g-4 mb-4">
 
-                <div class="col-md-4">
+                        <div class="col-xl-3 col-md-6">
 
-                    <div class="card shadow-sm">
+                            <div class="card stat-card border-0 shadow-sm">
 
-                        <div class="card-body">
+                                <div class="card-body d-flex justify-content-between align-items-center">
 
-                            <h5>Total Patients</h5>
+                                    <div>
 
-                            <h2 th:text="${patientCount}">0</h2>
+                                        <small class="text-muted text-uppercase">
+                                            Patients
+                                        </small>
+
+                                        <h2 class="fw-bold mt-2 mb-1"
+                                            th:text="${patientCount}">
+                                            0
+                                        </h2>
+
+                                        <span class="text-success small">
+                        Registered Patients
+                    </span>
+
+                                    </div>
+
+                                    <div class="stat-icon bg-soft-primary">
+
+                                        <i class="bi bi-people-fill"></i>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-xl-3 col-md-6">
+
+                            <div class="card stat-card border-0 shadow-sm">
+
+                                <div class="card-body d-flex justify-content-between align-items-center">
+
+                                    <div>
+
+                                        <small class="text-muted text-uppercase">
+                                            Doctors
+                                        </small>
+
+                                        <h2 class="fw-bold mt-2 mb-1"
+                                            th:text="${doctorCount}">
+                                            0
+                                        </h2>
+
+                                        <span class="text-success small">
+                        Active Doctors
+                    </span>
+
+                                    </div>
+
+                                    <div class="stat-icon bg-soft-success">
+
+                                        <i class="bi bi-person-badge-fill"></i>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-xl-3 col-md-6">
+
+                            <div class="card stat-card border-0 shadow-sm">
+
+                                <div class="card-body d-flex justify-content-between align-items-center">
+
+                                    <div>
+
+                                        <small class="text-muted text-uppercase">
+                                            Appointments
+                                        </small>
+
+                                        <h2 class="fw-bold mt-2 mb-1"
+                                            th:text="${appointmentCount}">
+                                            0
+                                        </h2>
+
+                                        <span class="text-success small">
+                        Total Appointments
+                    </span>
+
+                                    </div>
+
+                                    <div class="stat-icon bg-soft-warning">
+
+                                        <i class="bi bi-calendar-check-fill"></i>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-xl-3 col-md-6">
+
+                            <div class="card stat-card border-0 shadow-sm">
+
+                                <div class="card-body d-flex justify-content-between align-items-center">
+
+                                    <div>
+
+                                        <small class="text-muted text-uppercase">
+                                            Users
+                                        </small>
+
+                                        <h2 class="fw-bold mt-2 mb-1"
+                                            th:text="${userCount}">
+                                            0
+                                        </h2>
+
+                                        <span class="text-success small">
+                        System Users
+                    </span>
+
+                                    </div>
+
+                                    <div class="stat-icon bg-soft-purple">
+
+                                        <i class="bi bi-person-circle"></i>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
 
                         </div>
 
                     </div>
 
-                </div>
 
-                <div class="col-md-4">
+                    <!-- recent appointments-->
 
-                    <div class="card shadow-sm">
+                    <div class="row g-4">
 
-                        <div class="card-body">
+                        <!-- Recent Appointments -->
 
-                            <h5>Doctors</h5>
+                        <div class="col-lg-8">
 
-                            <h2 th:text="${doctorCount}">0</h2>
+                            <div class="card border-0 shadow-sm rounded-4">
+
+                                <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
+
+                                    <h5 class="fw-bold mb-0">
+
+                                        Recent Appointments
+
+                                    </h5>
+
+                                    <a th:href="@{/admin/appointments}"
+                                       class="btn btn-sm btn-outline-primary">
+
+                                        View All
+
+                                    </a>
+
+                                </div>
+
+                                <div class="card-body">
+
+                                    <div class="table-responsive">
+
+                                        <table class="table table-hover align-middle">
+
+                                            <thead>
+
+                                            <tr>
+
+                                                <th>Patient</th>
+
+                                                <th>Doctor</th>
+
+                                                <th>Date</th>
+
+                                                <th>Status</th>
+
+                                            </tr>
+
+                                            </thead>
+
+                                            <tbody>
+
+                                            <tr th:each="appointment : ${recentAppointments}">
+
+                                                <td th:text="${appointment.patient.firstName + ' ' + appointment.patient.lastName}"></td>
+
+                                                <td th:text="${'Dr. ' + appointment.doctor.firstName + ' ' + appointment.doctor.lastName}"></td>
+
+                                                <td th:text="${appointment.appointmentDate}"></td>
+
+                                                <td>
+
+                                <span class="badge bg-primary"
+                                      th:if="${appointment.status.name()=='SCHEDULED'}">
+                                    Scheduled
+                                </span>
+
+                                                    <span class="badge bg-success"
+                                                          th:if="${appointment.status.name()=='COMPLETED'}">
+                                    Completed
+                                </span>
+
+                                                    <span class="badge bg-danger"
+                                                          th:if="${appointment.status.name()=='CANCELLED'}">
+                                    Cancelled
+                                </span>
+
+                                                    <span class="badge bg-warning text-dark"
+                                                          th:if="${appointment.status.name()=='ABSENT'}">
+                                    Absent
+                                </span>
+
+                                                </td>
+
+                                            </tr>
+
+                                            <tr th:if="${#lists.isEmpty(recentAppointments)}">
+
+                                                <td colspan="4"
+                                                    class="text-center text-muted">
+
+                                                    No appointments available.
+
+                                                </td>
+
+                                            </tr>
+
+                                            </tbody>
+
+                                        </table>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Quick Actions -->
+
+                        <div class="col-lg-4">
+
+                            <div class="card border-0 shadow-sm rounded-4">
+
+                                <div class="card-header bg-white border-0">
+
+                                    <h5 class="fw-bold mb-0">
+
+                                        Quick Actions
+
+                                    </h5>
+
+                                </div>
+
+                                <div class="card-body d-grid gap-3">
+
+                                    <a th:href="@{/admin/patients/create}"
+                                       class="btn btn-primary">
+
+                                        <i class="bi bi-person-plus-fill me-2"></i>
+
+                                        Register Patient
+
+                                    </a>
+
+                                    <a th:href="@{/admin/doctors/create}"
+                                       class="btn btn-success">
+
+                                        <i class="bi bi-person-badge-fill me-2"></i>
+
+                                        Add Doctor
+
+                                    </a>
+
+                                    <a th:href="@{/admin/appointments/create}"
+                                       class="btn btn-warning">
+
+                                        <i class="bi bi-calendar-plus-fill me-2"></i>
+
+                                        Schedule Appointment
+
+                                    </a>
+
+                                    <a th:href="@{/admin/users/create}"
+                                       class="btn btn-dark">
+
+                                        <i class="bi bi-person-fill-add me-2"></i>
+
+                                        Create User
+
+                                    </a>
+
+                                </div>
+
+                            </div>
 
                         </div>
 
                     </div>
 
-                </div>
+                    <!--today's appointment-->
+
+                    <div class="card border-0 shadow-sm rounded-4 mt-4">
+
+                        <div class="card-header bg-white border-0">
+
+                            <h5 class="fw-bold mb-0">
+
+                                Today's Appointments
+
+                            </h5>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div th:if="${#lists.isEmpty(todayAppointments)}"
+                                 class="text-center text-muted py-4">
+
+                                <i class="bi bi-calendar-x fs-1"></i>
+
+                                <p class="mt-3">
+
+                                    No appointments scheduled today.
+
+                                </p>
+
+                            </div>
+
+                            <div th:unless="${#lists.isEmpty(todayAppointments)}">
+
+                                <div th:each="appointment : ${todayAppointments}"
+                                     class="d-flex justify-content-between align-items-center border-bottom py-3">
+
+                                    <div>
+
+                                        <h6 class="mb-1"
+                                            th:text="${appointment.patient.firstName + ' ' + appointment.patient.lastName}">
+                                        </h6>
+
+                                        <small class="text-muted"
+                                               th:text="${'Dr. ' + appointment.doctor.firstName + ' ' + appointment.doctor.lastName}">
+                                        </small>
+
+                                    </div>
+
+                                    <span class="badge bg-primary"
+                                          th:text="${appointment.appointmentTime}">
+                </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </main>
+
+
+
+
+
+
 
             </div>
 
         </div>
 
     </div>
+
+
 
 </div>
 

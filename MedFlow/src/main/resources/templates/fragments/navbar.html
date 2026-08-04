@@ -1,33 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
 <body>
 
 <nav th:fragment="navbar"
-     class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+     class="top-navbar">
 
-    <div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center h-100 px-4">
 
-        <span class="navbar-brand fw-bold">
-            Admin Dashboard
-        </span>
+        <div>
 
-        <div class="ms-auto">
+            <h4 class="fw-bold mb-0">
+                Dashboard
+            </h4>
 
-            <div class="d-flex align-items-center gap-3">
+            <small class="text-muted">
+                Hospital Management System
+            </small>
 
-    <span>
-        Welcome,
-        <strong sec:authentication="name"></strong>
-    </span>
+        </div>
 
-                <a class="btn btn-outline-danger btn-sm"
-                   th:href="@{/logout}">
-                    <i class="bi bi-box-arrow-right"></i> Logout
-                </a>
+        <div class="d-flex align-items-center gap-3">
+
+            <div class="text-end">
+
+                <small class="text-muted">
+                    Welcome
+                </small>
+
+                <br>
+
+                <strong sec:authentication="name"></strong>
 
             </div>
 
+            <a th:href="@{/logout}"
+               class="btn btn-danger">
 
+                <i class="bi bi-box-arrow-right"></i>
+
+                Logout
+
+            </a>
 
         </div>
 
