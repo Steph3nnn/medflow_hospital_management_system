@@ -102,7 +102,7 @@ public class AppointmentService {
         long count = appointmentRepository.count() + 1;
 
         return String.format(
-                "APT-%d-%06d",
+                "APT-%d-%02d",
                 Year.now().getValue(),
                 count
         );
