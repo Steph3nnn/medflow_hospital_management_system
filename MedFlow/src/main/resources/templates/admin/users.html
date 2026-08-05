@@ -30,29 +30,7 @@
             <div th:replace="~{fragments/navbar :: navbar}"></div>
 
 
-            <form th:action="@{/admin/users}"
-                  method="get"
-                  class="mb-4">
 
-                <div class="input-group">
-
-                    <input type="text"
-                           name="search"
-                           class="form-control"
-                           placeholder="Search by name or email..."
-                           th:value="${search}">
-
-                    <button type="submit"
-                            class="btn btn-primary">
-
-                        <i class="bi bi-search"></i>
-                        Search
-
-                    </button>
-
-                </div>
-
-            </form>
 
 
             <!-- SUCCESS MESSAGE -->
@@ -92,6 +70,30 @@
                     </a>
 
                 </div>
+
+                <form th:action="@{/admin/users}"
+                      method="get"
+                      class="mb-4">
+
+                    <div class="input-group">
+
+                        <input type="text"
+                               name="search"
+                               class="form-control"
+                               placeholder="Search by name or email..."
+                               th:value="${search}">
+
+                        <button type="submit"
+                                class="btn btn-primary">
+
+                            <i class="bi bi-search"></i>
+                            Search
+
+                        </button>
+
+                    </div>
+
+                </form>
 
 
                 <!-- USERS TABLE -->
