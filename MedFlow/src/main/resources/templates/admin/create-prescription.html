@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Create Prescription</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+          rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+<div>
+
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-content">
+
+        <div class="container-fluid">
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-header bg-white">
+
+                    <h3 class="fw-bold">
+
+                        Create Prescription
+
+                    </h3>
+
+                    <p class="text-muted mb-0">
+
+                        Add medication for a consultation.
+
+                    </p>
+
+                </div>
+
+                <div class="card-body">
+
+                    <form th:action="@{/admin/prescriptions/create}"
+                          th:object="${createPrescriptionRequest}"
+                          method="post">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Consultation
+
+                            </label>
+
+                            <select class="form-select"
+                                    th:field="*{consultationId}">
+
+                                <option value="">
+
+                                    Select Consultation
+
+                                </option>
+
+                                <option
+                                        th:each="consultation : ${consultations}"
+                                        th:value="${consultation.id}"
+                                        th:text="${consultation.consultationId + ' - ' + consultation.appointment.patient.firstName + ' ' + consultation.appointment.patient.lastName}">
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Medication
+
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       th:field="*{medication}">
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Dosage
+
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       th:field="*{dosage}">
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="form-label">
+
+                                    Frequency
+
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       th:field="*{frequency}"
+                                       placeholder="e.g. Twice Daily">
+
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="form-label">
+
+                                    Duration
+
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       th:field="*{duration}"
+                                       placeholder="e.g. 7 Days">
+
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="form-label">
+
+                                    Route
+
+                                </label>
+
+                                <select class="form-select"
+                                        th:field="*{route}">
+
+                                    <option value="">Select Route</option>
+                                    <option>Oral</option>
+                                    <option>Intravenous (IV)</option>
+                                    <option>Intramuscular (IM)</option>
+                                    <option>Topical</option>
+                                    <option>Subcutaneous</option>
+                                    <option>Inhalation</option>
+                                    <option>Rectal</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Instructions
+
+                            </label>
+
+                            <textarea class="form-control"
+                                      rows="4"
+                                      th:field="*{instructions}"
+                                      placeholder="Take after meals, avoid alcohol, complete the full course, etc.">
+                            </textarea>
+
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2">
+
+                            <a th:href="@{/admin/prescriptions}"
+                               class="btn btn-secondary">
+
+                                <i class="bi bi-arrow-left"></i>
+
+                                Cancel
+
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+
+                                <i class="bi bi-check-circle"></i>
+
+                                Save Prescription
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

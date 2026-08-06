@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Edit Prescription</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+          rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+<div>
+
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-content">
+
+        <div class="container-fluid">
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-header bg-white">
+
+                    <h3 class="fw-bold">
+
+                        Edit Prescription
+
+                    </h3>
+
+                    <p class="text-muted mb-0">
+
+                        Update prescription information.
+
+                    </p>
+
+                </div>
+
+                <div class="card-body">
+
+                    <form th:action="@{/admin/prescriptions/edit/{id}(id=${prescription.id})}"
+                          method="post">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Consultation
+
+                            </label>
+
+                            <select class="form-select"
+                                    name="consultationId">
+
+                                <option
+                                        th:each="consultation : ${consultations}"
+                                        th:value="${consultation.id}"
+                                        th:selected="${consultation.id == prescription.consultation.id}"
+                                        th:text="${consultation.consultationId + ' - ' + consultation.appointment.patient.firstName + ' ' + consultation.appointment.patient.lastName}">
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Medication
+
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       name="medication"
+                                       th:value="${prescription.medication}">
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Dosage
+
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       name="dosage"
+                                       th:value="${prescription.dosage}">
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="form-label">
+
+                                    Frequency
+
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       name="frequency"
+                                       th:value="${prescription.frequency}">
+
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="form-label">
+
+                                    Duration
+
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       name="duration"
+                                       th:value="${prescription.duration}">
+
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="form-label">
+
+                                    Route
+
+                                </label>
+
+                                <select class="form-select"
+                                        name="route">
+
+                                    <option value="Oral"
+                                            th:selected="${prescription.route == 'Oral'}">
+                                        Oral
+                                    </option>
+
+                                    <option value="Intravenous (IV)"
+                                            th:selected="${prescription.route == 'Intravenous (IV)'}">
+                                        Intravenous (IV)
+                                    </option>
+
+                                    <option value="Intramuscular (IM)"
+                                            th:selected="${prescription.route == 'Intramuscular (IM)'}">
+                                        Intramuscular (IM)
+                                    </option>
+
+                                    <option value="Topical"
+                                            th:selected="${prescription.route == 'Topical'}">
+                                        Topical
+                                    </option>
+
+                                    <option value="Subcutaneous"
+                                            th:selected="${prescription.route == 'Subcutaneous'}">
+                                        Subcutaneous
+                                    </option>
+
+                                    <option value="Inhalation"
+                                            th:selected="${prescription.route == 'Inhalation'}">
+                                        Inhalation
+                                    </option>
+
+                                    <option value="Rectal"
+                                            th:selected="${prescription.route == 'Rectal'}">
+                                        Rectal
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Instructions
+
+                            </label>
+
+                            <textarea class="form-control"
+                                      rows="4"
+                                      name="instructions"
+                                      th:text="${prescription.instructions}">
+                            </textarea>
+
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2">
+
+                            <a th:href="@{/admin/prescriptions}"
+                               class="btn btn-secondary">
+
+                                <i class="bi bi-arrow-left"></i>
+
+                                Cancel
+
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-warning">
+
+                                <i class="bi bi-check-circle"></i>
+
+                                Update Prescription
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
