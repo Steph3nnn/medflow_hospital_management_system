@@ -15,15 +15,18 @@
 
 <body class="bg-light">
 
-<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+<div class="container-fluid">
 
-<div>
+    <div class="row min-vh-100">
 
-    <div th:replace="~{fragments/navbar :: navbar}"></div>
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
-    <main class="main-content">
 
-        <div class="container-fluid">
+        <div class="col-md-10 p-0">
+
+            <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+            <main class="p-4">
 
             <div class="card border-0 shadow-sm rounded-4">
 
@@ -45,7 +48,7 @@
 
                 <div class="card-body">
 
-                    <form th:action="@{/admin/prescriptions/edit/{id}(id=${prescription.id})}"
+                    <form th:action="@{/admin/prescription/edit/{id}(id=${prescription.id})}"
                           method="post">
 
                         <div class="mb-3">
@@ -206,7 +209,7 @@
 
                         <div class="d-flex justify-content-end gap-2">
 
-                            <a th:href="@{/admin/prescriptions}"
+                            <a th:href="@{/admin/prescription}"
                                class="btn btn-secondary">
 
                                 <i class="bi bi-arrow-left"></i>
@@ -232,10 +235,11 @@
 
             </div>
 
-        </div>
 
     </main>
 
+        </div>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>

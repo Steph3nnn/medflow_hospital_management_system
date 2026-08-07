@@ -11,7 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/admin/prescriptions")
+@RequestMapping("/admin/prescription")
 @RequiredArgsConstructor
 public class PrescriptionController {
 
@@ -31,7 +31,7 @@ public class PrescriptionController {
                 "keyword",
                 keyword);
 
-        return "admin/prescriptions";
+        return "admin/prescription";
     }
 
     @GetMapping("/create")
@@ -58,18 +58,11 @@ public class PrescriptionController {
 
             Model model) {
 
-        if (bindingResult.hasErrors()) {
 
-            model.addAttribute(
-                    "consultations",
-                    consultationService.findAll());
-
-            return "admin/create-prescription";
-        }
 
         prescriptionService.createPrescription(request);
 
-        return "redirect:/admin/prescriptions";
+        return "redirect:/admin/prescription";
     }
 
     @GetMapping("/view/{id}")
@@ -118,12 +111,12 @@ public class PrescriptionController {
                     "consultations",
                     consultationService.findAll());
 
-            return "admin/edit-prescription";
+            return "redirect:/edit-prescription";
         }
 
         prescriptionService.updatePrescription(id, request);
 
-        return "redirect:/admin/prescriptions";
+        return "redirect:/admin/prescription";
     }
 
     @PostMapping("/delete/{id}")

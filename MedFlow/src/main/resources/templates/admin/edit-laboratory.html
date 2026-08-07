@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Edit Laboratory Request</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+          rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+<div>
+
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-content">
+
+        <div class="container-fluid">
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-header bg-white">
+
+                    <h3 class="fw-bold">
+
+                        Edit Laboratory Request
+
+                    </h3>
+
+                    <p class="text-muted mb-0">
+
+                        Update laboratory request details.
+
+                    </p>
+
+                </div>
+
+                <div class="card-body">
+
+                    <form th:action="@{/admin/laboratories/edit/{id}(id=${laboratory.id})}"
+                          method="post">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Consultation
+
+                            </label>
+
+                            <select class="form-select"
+                                    name="consultationId">
+
+                                <option
+                                        th:each="consultation : ${consultations}"
+                                        th:value="${consultation.id}"
+                                        th:selected="${consultation.id == laboratory.consultation.id}"
+                                        th:text="${consultation.consultationId + ' - ' + consultation.appointment.patient.firstName + ' ' + consultation.appointment.patient.lastName}">
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Test Name
+
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       name="testName"
+                                       th:value="${laboratory.testName}">
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Sample Type
+
+                                </label>
+
+                                <select class="form-select"
+                                        name="sampleType">
+
+                                    <option value="Blood"
+                                            th:selected="${laboratory.sampleType == 'Blood'}">Blood</option>
+
+                                    <option value="Urine"
+                                            th:selected="${laboratory.sampleType == 'Urine'}">Urine</option>
+
+                                    <option value="Stool"
+                                            th:selected="${laboratory.sampleType == 'Stool'}">Stool</option>
+
+                                    <option value="Sputum"
+                                            th:selected="${laboratory.sampleType == 'Sputum'}">Sputum</option>
+
+                                    <option value="Saliva"
+                                            th:selected="${laboratory.sampleType == 'Saliva'}">Saliva</option>
+
+                                    <option value="Swab"
+                                            th:selected="${laboratory.sampleType == 'Swab'}">Swab</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="form-label">
+
+                                    Priority
+
+                                </label>
+
+                                <select class="form-select"
+                                        name="priority">
+
+                                    <option value="Routine"
+                                            th:selected="${laboratory.priority == 'Routine'}">Routine</option>
+
+                                    <option value="Urgent"
+                                            th:selected="${laboratory.priority == 'Urgent'}">Urgent</option>
+
+                                    <option value="Emergency"
+                                            th:selected="${laboratory.priority == 'Emergency'}">Emergency</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="form-label">
+
+                                    Status
+
+                                </label>
+
+                                <select class="form-select"
+                                        name="status">
+
+                                    <option value="Pending"
+                                            th:selected="${laboratory.status == 'Pending'}">Pending</option>
+
+                                    <option value="In Progress"
+                                            th:selected="${laboratory.status == 'In Progress'}">In Progress</option>
+
+                                    <option value="Completed"
+                                            th:selected="${laboratory.status == 'Completed'}">Completed</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Clinical Notes
+
+                            </label>
+
+                            <textarea class="form-control"
+                                      rows="4"
+                                      name="clinicalNotes"
+                                      th:text="${laboratory.clinicalNotes}">
+                            </textarea>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Laboratory Result
+
+                            </label>
+
+                            <textarea class="form-control"
+                                      rows="5"
+                                      name="result"
+                                      th:text="${laboratory.result}">
+                            </textarea>
+
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2">
+
+                            <a th:href="@{/admin/laboratories}"
+                               class="btn btn-secondary">
+
+                                <i class="bi bi-arrow-left"></i>
+
+                                Cancel
+
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-warning">
+
+                                <i class="bi bi-check-circle"></i>
+
+                                Update Laboratory Request
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

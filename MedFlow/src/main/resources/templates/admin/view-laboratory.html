@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>View Prescription</title>
+    <title>Laboratory Request Details</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
           rel="stylesheet">
@@ -14,18 +14,16 @@
 </head>
 
 <body class="bg-light">
-<div class="container-fluid">
 
-    <div class="row min-vh-100">
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
-        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+<div>
 
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-        <div class="col-md-10 p-0">
+    <main class="main-content">
 
-            <div th:replace="~{fragments/navbar :: navbar}"></div>
-
-            <main class="p-4">
+        <div class="container-fluid">
 
             <div class="card border-0 shadow-sm rounded-4">
 
@@ -33,7 +31,7 @@
 
                     <h3 class="fw-bold">
 
-                        Prescription Details
+                        Laboratory Request Details
 
                     </h3>
 
@@ -44,97 +42,67 @@
                     <div class="row">
 
                         <div class="col-md-6 mb-3">
-
-                            <label class="fw-bold">Prescription ID</label>
-
-                            <p th:text="${prescription.prescriptionId}"></p>
-
+                            <label class="fw-bold">Laboratory ID</label>
+                            <p th:text="${laboratory.laboratoryId}"></p>
                         </div>
 
                         <div class="col-md-6 mb-3">
-
                             <label class="fw-bold">Consultation ID</label>
-
-                            <p th:text="${prescription.consultation.consultationId}"></p>
-
+                            <p th:text="${laboratory.consultation.consultationId}"></p>
                         </div>
 
                         <div class="col-md-6 mb-3">
-
                             <label class="fw-bold">Patient</label>
-
-                            <p th:text="${prescription.consultation.appointment.patient.firstName + ' ' + prescription.consultation.appointment.patient.lastName}"></p>
-
+                            <p th:text="${laboratory.consultation.appointment.patient.firstName + ' ' + laboratory.consultation.appointment.patient.lastName}"></p>
                         </div>
 
                         <div class="col-md-6 mb-3">
-
                             <label class="fw-bold">Doctor</label>
-
-                            <p th:text="${'Dr. ' + prescription.consultation.appointment.doctor.firstName + ' ' + prescription.consultation.appointment.doctor.lastName}"></p>
-
+                            <p th:text="${'Dr. ' + laboratory.consultation.appointment.doctor.firstName + ' ' + laboratory.consultation.appointment.doctor.lastName}"></p>
                         </div>
 
                         <div class="col-md-6 mb-3">
-
-                            <label class="fw-bold">Medication</label>
-
-                            <p th:text="${prescription.medication}"></p>
-
+                            <label class="fw-bold">Test Name</label>
+                            <p th:text="${laboratory.testName}"></p>
                         </div>
 
                         <div class="col-md-6 mb-3">
-
-                            <label class="fw-bold">Dosage</label>
-
-                            <p th:text="${prescription.dosage}"></p>
-
+                            <label class="fw-bold">Sample Type</label>
+                            <p th:text="${laboratory.sampleType}"></p>
                         </div>
 
                         <div class="col-md-6 mb-3">
-
-                            <label class="fw-bold">Frequency</label>
-
-                            <p th:text="${prescription.frequency}"></p>
-
+                            <label class="fw-bold">Priority</label>
+                            <p th:text="${laboratory.priority}"></p>
                         </div>
 
                         <div class="col-md-6 mb-3">
-
-                            <label class="fw-bold">Duration</label>
-
-                            <p th:text="${prescription.duration}"></p>
-
+                            <label class="fw-bold">Status</label>
+                            <p th:text="${laboratory.status}"></p>
                         </div>
 
-                        <div class="col-md-6 mb-3">
-
-                            <label class="fw-bold">Route</label>
-
-                            <p th:text="${prescription.route}"></p>
-
+                        <div class="col-12 mb-3">
+                            <label class="fw-bold">Clinical Notes</label>
+                            <p th:text="${laboratory.clinicalNotes}"></p>
                         </div>
 
                         <div class="col-12 mb-4">
-
-                            <label class="fw-bold">Instructions</label>
-
-                            <p th:text="${prescription.instructions}"></p>
-
+                            <label class="fw-bold">Laboratory Result</label>
+                            <p th:text="${laboratory.result ?: 'Result not yet available'}"></p>
                         </div>
 
                     </div>
 
                     <div class="d-flex justify-content-end gap-2">
 
-                        <a th:href="@{/admin/prescription}"
+                        <a th:href="@{/admin/laboratories}"
                            class="btn btn-secondary">
 
                             Back
 
                         </a>
 
-                        <a th:href="@{/admin/prescription/edit/{id}(id=${prescription.id})}"
+                        <a th:href="@{/admin/laboratories/edit/{id}(id=${laboratory.id})}"
                            class="btn btn-warning">
 
                             Edit
@@ -147,10 +115,10 @@
 
             </div>
 
+        </div>
+
     </main>
 
-        </div>
-    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
