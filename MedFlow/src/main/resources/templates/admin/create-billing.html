@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Create Bill</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+          rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container-fluid">
+
+    <div class="row min-vh-100">
+
+        <!-- Sidebar -->
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+        <!-- Main Content -->
+        <div class="col-md-10 p-0">
+
+            <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+            <main class="p-4">
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-header bg-white">
+
+                    <h3 class="fw-bold">Create Bill</h3>
+
+                    <p class="text-muted mb-0">
+                        Create a new patient bill.
+                    </p>
+
+                </div>
+
+                <div class="card-body">
+
+                    <form th:action="@{/admin/billing/create}"
+                          th:object="${createBillingRequest}"
+                          method="post">
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+                                Appointment
+                            </label>
+
+                            <select class="form-select"
+                                    th:field="*{appointmentId}">
+
+                                <option value="">
+                                    Select Appointment
+                                </option>
+
+                                <option th:each="appointment : ${appointments}"
+                                        th:value="${appointment.id}"
+                                        th:text="${appointment.patient.firstName + ' ' + appointment.patient.lastName + ' - ' + appointment.id}">
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <h5 class="fw-bold mb-3">
+                            Charges
+                        </h5>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Consultation Fee
+                                </label>
+
+                                <input type="number"
+                                       step="0.01"
+                                       min="0"
+                                       class="form-control"
+                                       th:field="*{consultationFee}"
+                                       placeholder="0.00">
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Laboratory Fee
+                                </label>
+
+                                <input type="number"
+                                       step="0.01"
+                                       min="0"
+                                       class="form-control"
+                                       th:field="*{laboratoryFee}"
+                                       placeholder="0.00">
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Medication Fee
+                                </label>
+
+                                <input type="number"
+                                       step="0.01"
+                                       min="0"
+                                       class="form-control"
+                                       th:field="*{medicationFee}"
+                                       placeholder="0.00">
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Other Charges
+                                </label>
+
+                                <input type="number"
+                                       step="0.01"
+                                       min="0"
+                                       class="form-control"
+                                       th:field="*{otherCharges}"
+                                       placeholder="0.00">
+
+                            </div>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+                                Amount Paid
+                            </label>
+
+                            <input type="number"
+                                   step="0.01"
+                                   min="0"
+                                   class="form-control"
+                                   th:field="*{amountPaid}"
+                                   placeholder="0.00">
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+                                Notes
+                            </label>
+
+                            <textarea class="form-control"
+                                      rows="4"
+                                      th:field="*{notes}"
+                                      placeholder="Additional billing information...">
+                            </textarea>
+
+                        </div>
+
+                        <div class="alert alert-info">
+
+                            <i class="bi bi-info-circle me-2"></i>
+
+                            Total amount, balance, and payment status
+                            will be calculated automatically.
+
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2">
+
+                            <a th:href="@{/admin/billing}"
+                               class="btn btn-secondary">
+
+                                <i class="bi bi-arrow-left"></i>
+                                Cancel
+
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+
+                                <i class="bi bi-check-circle"></i>
+                                Create Bill
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+    </main>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

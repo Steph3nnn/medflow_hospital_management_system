@@ -15,15 +15,19 @@
 
 <body class="bg-light">
 
-<div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
-<div>
+<div class="container-fluid">
 
-    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    <div class="row min-vh-100">
 
-    <main class="main-content">
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
-        <div class="container-fluid">
+
+        <div class="col-md-10 p-0">
+
+            <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+            <main class="p-4">
 
             <div class="card border-0 shadow-sm rounded-4">
 
@@ -105,12 +109,12 @@
                                         th:field="*{sampleType}">
 
                                     <option value="">Select Sample</option>
-                                    <option>Blood</option>
-                                    <option>Urine</option>
-                                    <option>Stool</option>
-                                    <option>Sputum</option>
-                                    <option>Saliva</option>
-                                    <option>Swab</option>
+                                    <option value="">Blood</option>
+                                    <option value="">Urine</option>
+                                    <option value="">Stool</option>
+                                    <option value="">Sputum</option>
+                                    <option value="">Saliva</option>
+                                    <option value="">Swab</option>
 
                                 </select>
 
@@ -132,9 +136,9 @@
                                         th:field="*{priority}">
 
                                     <option value="">Select Priority</option>
-                                    <option>Routine</option>
-                                    <option>Urgent</option>
-                                    <option>Emergency</option>
+                                    <option value="">Routine</option>
+                                    <option value="">Urgent</option>
+                                    <option value="">Emergency</option>
 
                                 </select>
 
@@ -151,9 +155,9 @@
                                 <select class="form-select"
                                         th:field="*{status}">
 
-                                    <option>Pending</option>
-                                    <option>In Progress</option>
-                                    <option>Completed</option>
+                                    <option value="">Pending</option>
+                                    <option value="">In Progress</option>
+                                    <option value="">Completed</option>
 
                                 </select>
 
@@ -219,11 +223,12 @@
 
                 </div>
 
-            </div>
 
         </div>
 
     </main>
+        </div>
+    </div>
 
 </div>
 
