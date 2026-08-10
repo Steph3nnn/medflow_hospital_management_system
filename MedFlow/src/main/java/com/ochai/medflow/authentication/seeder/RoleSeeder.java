@@ -6,7 +6,6 @@ import com.ochai.medflow.common.enums.RoleName;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,6 +16,19 @@ public class RoleSeeder implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        // Seed roles here
+
+        for (RoleName roleName : RoleName.values()) {
+
+            if (roleRepository.findByName(roleName).isEmpty()) {
+
+                Role role = Role.builder()
+                        .name(roleName)
+                        .build();
+
+                roleRepository.save(role);
+            }
+        }
+
+        System.out.println("Roles seeded successfully.");
     }
 }
