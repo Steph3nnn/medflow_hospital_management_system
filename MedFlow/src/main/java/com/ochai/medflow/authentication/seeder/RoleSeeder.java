@@ -6,10 +6,12 @@ import com.ochai.medflow.common.enums.RoleName;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Order(1)
 public class RoleSeeder implements ApplicationRunner {
 
     private final RoleRepository roleRepository;

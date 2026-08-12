@@ -8,11 +8,13 @@ import com.ochai.medflow.common.enums.RoleName;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Order(2)
 public class AdminSeeder implements ApplicationRunner {
 
     private final UserRepository userRepository;
