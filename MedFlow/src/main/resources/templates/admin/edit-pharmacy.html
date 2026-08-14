@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>MedFlow | Edit Medication</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+          rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container-fluid">
+
+    <div class="row min-vh-100">
+
+        <!-- Sidebar -->
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+        <!-- Main Content -->
+        <div class="col-md-10 p-0">
+
+            <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+            <main class="p-4">
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-header bg-white">
+
+                    <h3 class="fw-bold">
+                        Edit Medication
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Update medication information and stock.
+                    </p>
+
+                </div>
+
+                <div class="card-body">
+
+                    <form th:action="@{/admin/pharmacy/edit/{id}(id=${pharmacy.id})}"
+                          method="post">
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Medication Code
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       name="medicationCode"
+                                       th:value="${pharmacy.medicationCode}">
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Medication Name
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       name="medicationName"
+                                       th:value="${pharmacy.medicationName}">
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Category
+                                </label>
+
+                                <select class="form-select"
+                                        name="category">
+
+                                    <option value="">
+                                        Select Category
+                                    </option>
+
+                                    <option value="Painkiller"
+                                            th:selected="${pharmacy.category == 'Painkiller'}">
+                                        Painkiller
+                                    </option>
+
+                                    <option value="Antibiotic"
+                                            th:selected="${pharmacy.category == 'Antibiotic'}">
+                                        Antibiotic
+                                    </option>
+
+                                    <option value="Antimalarial"
+                                            th:selected="${pharmacy.category == 'Antimalarial'}">
+                                        Antimalarial
+                                    </option>
+
+                                    <option value="Antihistamine"
+                                            th:selected="${pharmacy.category == 'Antihistamine'}">
+                                        Antihistamine
+                                    </option>
+
+                                    <option value="Vitamin"
+                                            th:selected="${pharmacy.category == 'Vitamin'}">
+                                        Vitamin
+                                    </option>
+
+                                    <option value="Other"
+                                            th:selected="${pharmacy.category == 'Other'}">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Quantity
+                                </label>
+
+                                <input type="number"
+                                       min="0"
+                                       class="form-control"
+                                       name="quantity"
+                                       th:value="${pharmacy.quantity}">
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Unit Price
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+                                        ₦
+                                    </span>
+
+                                    <input type="number"
+                                           step="0.01"
+                                           min="0"
+                                           class="form-control"
+                                           name="unitPrice"
+                                           th:value="${pharmacy.unitPrice}">
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Supplier
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       name="supplier"
+                                       th:value="${pharmacy.supplier}">
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Expiry Date
+                                </label>
+
+                                <input type="date"
+                                       class="form-control"
+                                       name="expiryDate"
+                                       th:value="${pharmacy.expiryDate}">
+
+                            </div>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+                                Description
+                            </label>
+
+                            <textarea class="form-control"
+                                      rows="4"
+                                      name="description"
+                                      th:text="${pharmacy.description}">
+                            </textarea>
+
+                        </div>
+
+                        <div class="alert alert-info">
+
+                            <i class="bi bi-info-circle me-2"></i>
+
+                            Stock status is automatically determined from
+                            the current quantity.
+
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2">
+
+                            <a th:href="@{/admin/pharmacy}"
+                               class="btn btn-secondary">
+
+                                <i class="bi bi-arrow-left"></i>
+                                Cancel
+
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-warning">
+
+                                <i class="bi bi-check-circle"></i>
+                                Update Medication
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+
+    </main>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

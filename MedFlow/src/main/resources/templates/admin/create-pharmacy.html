@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>MedFlow | Add Medication</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+          rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container-fluid">
+
+    <div class="row min-vh-100">
+
+        <!-- Sidebar -->
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+        <!-- Main Content -->
+        <div class="col-md-10 p-0">
+
+            <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+            <main class="p-4">
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-header bg-white">
+
+                    <h3 class="fw-bold">
+                        Add Medication
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Add a medication to the pharmacy inventory.
+                    </p>
+
+                </div>
+
+                <div class="card-body">
+
+                    <form th:action="@{/admin/pharmacy/create}"
+                          th:object="${createPharmacyRequest}"
+                          method="post">
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Medication Code
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       th:field="*{medicationCode}"
+                                       placeholder="e.g. MED-001">
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Medication Name
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       th:field="*{medicationName}"
+                                       placeholder="e.g. Paracetamol">
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Category
+                                </label>
+
+                                <select class="form-select"
+                                        th:field="*{category}">
+
+                                    <option value="">
+                                        Select Category
+                                    </option>
+
+                                    <option value="Painkiller">
+                                        Painkiller
+                                    </option>
+
+                                    <option value="Antibiotic">
+                                        Antibiotic
+                                    </option>
+
+                                    <option value="Antimalarial">
+                                        Antimalarial
+                                    </option>
+
+                                    <option value="Antihistamine">
+                                        Antihistamine
+                                    </option>
+
+                                    <option value="Vitamin">
+                                        Vitamin
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Quantity
+                                </label>
+
+                                <input type="number"
+                                       min="0"
+                                       class="form-control"
+                                       th:field="*{quantity}"
+                                       placeholder="0">
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Unit Price
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+                                        ₦
+                                    </span>
+
+                                    <input type="number"
+                                           step="0.01"
+                                           min="0"
+                                           class="form-control"
+                                           th:field="*{unitPrice}"
+                                           placeholder="0.00">
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Supplier
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       th:field="*{supplier}"
+                                       placeholder="Supplier name">
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Expiry Date
+                                </label>
+
+                                <input type="date"
+                                       class="form-control"
+                                       th:field="*{expiryDate}">
+
+                            </div>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+                                Description
+                            </label>
+
+                            <textarea class="form-control"
+                                      rows="4"
+                                      th:field="*{description}"
+                                      placeholder="Medication description...">
+                            </textarea>
+
+                        </div>
+
+                        <div class="alert alert-info">
+
+                            <i class="bi bi-info-circle me-2"></i>
+
+                            Stock status will be calculated automatically
+                            from the quantity.
+
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2">
+
+                            <a th:href="@{/admin/pharmacy}"
+                               class="btn btn-secondary">
+
+                                <i class="bi bi-arrow-left"></i>
+                                Cancel
+
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+
+                                <i class="bi bi-check-circle"></i>
+                                Add Medication
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+
+    </main>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
