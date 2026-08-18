@@ -38,6 +38,11 @@
                         Manage medications and pharmacy stock.
                     </p>
 
+                    <p class="text-muted mb-0">
+                        <span th:text="${#lists.size(medications)}"></span>
+                        medication(s) found
+                    </p>
+
                 </div>
 
                 <a th:href="@{/admin/pharmacy/create}"
