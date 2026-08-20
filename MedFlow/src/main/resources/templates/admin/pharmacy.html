@@ -139,7 +139,13 @@
 
                                 </td>
 
-                                <td th:text="${medication.expiryDate}">
+                                <td>
+                                    <span th:text="${medication.expiryDate}"></span>
+
+                                    <span th:if="${medication.expired}"
+                                          class="badge bg-danger ms-1">
+        Expired
+    </span>
                                 </td>
 
                                 <td>
