@@ -6,6 +6,7 @@ import com.ochai.medflow.pharmacy.repository.PharmacyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -97,5 +98,23 @@ public class PharmacyService {
     public void deleteMedication(Long id) {
 
         pharmacyRepository.deleteById(id);
+    }
+
+    public long countMedications() {
+        return pharmacyRepository.count();
+    }
+
+    public long countLowStock() {
+        return pharmacyRepository
+                .countByQuantityLessThanEqualAndQuantityGreaterThan(10, 0);
+    }
+
+    public long countOutOfStock() {
+        return pharmacyRepository.countByQuantity(0);
+    }
+
+    public long countExpired() {
+        return pharmacyRepository
+                .countByExpiryDateBefore(LocalDate.now());
     }
 }

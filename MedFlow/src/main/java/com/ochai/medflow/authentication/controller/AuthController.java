@@ -4,6 +4,7 @@ import com.ochai.medflow.appointment.service.AppointmentService;
 import com.ochai.medflow.authentication.service.UserService;
 import com.ochai.medflow.doctor.service.DoctorService;
 import com.ochai.medflow.patient.service.PatientService;
+import com.ochai.medflow.pharmacy.service.PharmacyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,8 @@ public class AuthController {
     private final DoctorService doctorService;
     private final AppointmentService appointmentService;
     private final UserService userService;
+    private final PharmacyService pharmacyService;
+
 
     @GetMapping("/login")
     public String login() {
@@ -30,6 +33,10 @@ public class AuthController {
         model.addAttribute("appointmentCount", appointmentService.countAppointments());
         model.addAttribute("userCount", userService.countUsers());
         model.addAttribute("recentAppointments", appointmentService.getRecentAppointments());
+        model.addAttribute("totalMedications", pharmacyService.countMedications());
+        model.addAttribute("lowStockMedications", pharmacyService.countLowStock());
+        model.addAttribute("outOfStockMedications", pharmacyService.countOutOfStock());
+        model.addAttribute("expiredMedications", pharmacyService.countExpired());
         return "admin/dashboard";
     }
 }

@@ -525,6 +525,166 @@
                         </div>
 
                     </div>
+
+                    <!-- Pharmacy Overview -->
+                    <div class="row g-4 mt-1">
+
+                        <!-- Total Medications -->
+                        <div class="col-md-3">
+
+                            <div class="card border-0 shadow-sm h-100">
+
+                                <div class="card-body">
+
+                                    <div class="d-flex justify-content-between align-items-center">
+
+                                        <div>
+                                            <p class="text-muted mb-1">
+                                                Total Medications
+                                            </p>
+
+                                            <h3 class="fw-bold mb-0"
+                                                th:text="${totalMedications}">
+                                                0
+                                            </h3>
+                                        </div>
+
+                                        <div class="fs-2 text-primary">
+                                            <i class="bi bi-capsule"></i>
+                                        </div>
+
+                                    </div>
+
+                                    <a th:href="@{/admin/pharmacy}"
+                                       class="small text-decoration-none">
+                                        View Pharmacy
+                                        <i class="bi bi-arrow-right"></i>
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Low Stock -->
+                        <div class="col-md-3">
+
+                            <div class="card border-0 shadow-sm h-100">
+
+                                <div class="card-body">
+
+                                    <div class="d-flex justify-content-between align-items-center">
+
+                                        <div>
+                                            <p class="text-muted mb-1">
+                                                Low Stock
+                                            </p>
+
+                                            <h3 class="fw-bold mb-0"
+                                                th:text="${lowStockMedications}">
+                                                0
+                                            </h3>
+                                        </div>
+
+                                        <div class="fs-2 text-warning">
+                                            <i class="bi bi-exclamation-triangle"></i>
+                                        </div>
+
+                                    </div>
+
+                                    <a th:href="@{/admin/pharmacy}"
+                                       class="small text-decoration-none">
+                                        Check Stock
+                                        <i class="bi bi-arrow-right"></i>
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Out of Stock -->
+                        <div class="col-md-3">
+
+                            <div class="card border-0 shadow-sm h-100">
+
+                                <div class="card-body">
+
+                                    <div class="d-flex justify-content-between align-items-center">
+
+                                        <div>
+                                            <p class="text-muted mb-1">
+                                                Out of Stock
+                                            </p>
+
+                                            <h3 class="fw-bold mb-0"
+                                                th:text="${outOfStockMedications}">
+                                                0
+                                            </h3>
+                                        </div>
+
+                                        <div class="fs-2 text-danger">
+                                            <i class="bi bi-x-circle"></i>
+                                        </div>
+
+                                    </div>
+
+                                    <a th:href="@{/admin/pharmacy}"
+                                       class="small text-decoration-none">
+                                        View Pharmacy
+                                        <i class="bi bi-arrow-right"></i>
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Expired -->
+                        <div class="col-md-3">
+
+                            <div class="card border-0 shadow-sm h-100">
+
+                                <div class="card-body">
+
+                                    <div class="d-flex justify-content-between align-items-center">
+
+                                        <div>
+                                            <p class="text-muted mb-1">
+                                                Expired
+                                            </p>
+
+                                            <h3 class="fw-bold mb-0"
+                                                th:text="${expiredMedications}">
+                                                0
+                                            </h3>
+                                        </div>
+
+                                        <div class="fs-2 text-danger">
+                                            <i class="bi bi-calendar-x"></i>
+                                        </div>
+
+                                    </div>
+
+                                    <a th:href="@{/admin/pharmacy}"
+                                       class="small text-decoration-none">
+                                        Review Medication
+                                        <i class="bi bi-arrow-right"></i>
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
                 </main>
 
 
