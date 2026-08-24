@@ -578,14 +578,18 @@
                                     <div class="d-flex justify-content-between align-items-center">
 
                                         <div>
+                                            <a th:href="@{/admin/pharmacy}"
+                                               class="text-decoration-none text-dark">
                                             <p class="text-muted mb-1">
-                                                Low Stock
+                                               Review Low Stock
                                             </p>
+
 
                                             <h3 class="fw-bold mb-0"
                                                 th:text="${lowStockMedications}">
                                                 0
                                             </h3>
+                                            </a>
                                         </div>
 
                                         <div class="fs-2 text-warning">
@@ -617,6 +621,8 @@
                                     <div class="d-flex justify-content-between align-items-center">
 
                                         <div>
+                                            <a th:href="@{/admin/pharmacy}"
+                                               class="text-decoration-none text-dark">
                                             <p class="text-muted mb-1">
                                                 Out of Stock
                                             </p>
@@ -625,6 +631,7 @@
                                                 th:text="${outOfStockMedications}">
                                                 0
                                             </h3>
+                                            </a>
                                         </div>
 
                                         <div class="fs-2 text-danger">
